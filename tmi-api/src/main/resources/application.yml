@@ -1,0 +1,13 @@
+
+spring:
+  profiles:
+    include:
+      - domain
+      - oauth
+  session:
+    store-type: jdbc
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.type: trace
+server:
+  port: 8090

@@ -1,4 +1,4 @@
 rootProject.name = 'tmi'
 include 'tmi-domain'
-include 'tmi-web'
+include 'tmi-api'
 
