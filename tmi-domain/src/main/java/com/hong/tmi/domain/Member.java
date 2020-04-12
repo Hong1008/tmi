@@ -1,20 +1,23 @@
 package com.hong.tmi.domain;
 
-import com.hong.tmi.domain.common.BaseEntity;
+import com.hong.tmi.domain.common.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * 사용자 엔티티
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Member extends BaseEntity {
+public class Member extends BaseTimeEntity {
     @Id @GeneratedValue
     @Column(name = "member_id")
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String memberName;
 
     @Column(nullable = false)
     private String email;
@@ -26,16 +29,16 @@ public class Member extends BaseEntity {
     private MemberRole memberRole;
 
     @Builder
-    public Member(Long id, String name, String email, String picture, MemberRole memberRole) {
+    public Member(Long id, String memberName, String email, String picture, MemberRole memberRole) {
         this.id = id;
-        this.name = name;
+        this.memberName = memberName;
         this.picture = picture;
         this.email = email;
         this.memberRole = memberRole;
     }
 
     public Member update(String name, String picture){
-        this.name = name;
+        this.memberName = name;
         this.picture = picture;
 
         return this;

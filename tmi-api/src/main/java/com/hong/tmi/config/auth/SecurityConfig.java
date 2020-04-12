@@ -1,6 +1,5 @@
 package com.hong.tmi.config.auth;
 
-import com.hong.tmi.domain.Member.MemberRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,8 +17,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/","/static/**").permitAll()
-                    .antMatchers("/api/**").hasRole(MemberRole.USER.name())
+                    .antMatchers("/**","/static/**").permitAll()
+//                    .antMatchers("/api/**").hasRole(MemberRole.USER.name())
                     .anyRequest().authenticated()
                 .and()
                     .logout()
