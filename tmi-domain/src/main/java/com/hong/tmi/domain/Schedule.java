@@ -10,33 +10,31 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 프로젝트 엔티티
- */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Project {
+public class Schedule {
     @Id @GeneratedValue
-    @Column(name = "pro_id")
+    @Column(name = "sch_id")
     private Long id;
 
     @AttributeOverrides({
-            @AttributeOverride(name = "name", column = @Column(name="pro_name")),
-            @AttributeOverride(name = "info", column = @Column(name="pro_info"))
+            @AttributeOverride(name = "name", column = @Column(name="sch_name")),
+            @AttributeOverride(name = "info", column = @Column(name="sch_info"))
     })
     @Embedded
     private TaskManagement taskManagement;
 
-    @OneToMany(mappedBy = "project")
-    private List<Schedule> schedules = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pro_id")
+    private Project project;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "schedule")
     private List<Todo> todos = new ArrayList<>();
 
     @Builder
-    public Project(Long id, TaskManagement taskManagement) {
-        this.id = id;
+    public Schedule(TaskManagement taskManagement, Project project) {
         this.taskManagement = taskManagement;
+        this.project = project;
     }
 }

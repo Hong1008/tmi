@@ -13,11 +13,12 @@ import java.util.stream.Collectors;
 
 @DataJpaTest
 class MemberRepositoryTest {
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
     @Rollback(false)
     @Test
-    public void save() throws Exception{
+    public void save() throws Exception {
         //given
         Member member = Member.builder()
                 .memberName("member1")
@@ -32,16 +33,17 @@ class MemberRepositoryTest {
     }
 
     @Test
-    public void note() throws Exception{
-        List<String> arr = new ArrayList<>();
-        arr.add("가나");
-        arr.add("너냐");
-        arr.add("나다");
+    public void note() throws Exception {
+        List<Project> arr = new ArrayList<>();
+        Project project = new Project();
+        Project project2 = new Project();
+        arr.add(project);
+        arr.add(project2);
+        List<Project> result = arr.stream().filter(
+                s -> s.equals(project) && s.getTaskManagement() == null).collect(Collectors.toList());
 
-        List<String> result = arr.stream().filter(s -> s.equals("나다")).collect(Collectors.toList());
-
-        for (String s : result) {
-            System.out.println("s = " + s);
+        for (Project project1 : result) {
+            System.out.println("project1.toString() = " + project1.toString());
         }
     }
 }

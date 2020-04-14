@@ -16,16 +16,16 @@ public class Member extends BaseTimeEntity {
     @Column(name = "member_id")
     private Long id;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String memberName;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String email;
 
     private String picture;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private MemberRole memberRole;
 
     @Builder
