@@ -3,7 +3,7 @@ package com.hong.tmi.config.auth;
 import com.hong.tmi.config.auth.dto.OAuthAttributes;
 import com.hong.tmi.config.auth.dto.SessionMember;
 import com.hong.tmi.domain.Member;
-import com.hong.tmi.domain.MemberRepository;
+import com.hong.tmi.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;

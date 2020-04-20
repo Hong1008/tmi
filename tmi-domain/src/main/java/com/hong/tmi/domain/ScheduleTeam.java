@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 스케줄 팀 엔티티
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity

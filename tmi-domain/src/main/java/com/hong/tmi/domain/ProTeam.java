@@ -1,6 +1,7 @@
 package com.hong.tmi.domain;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,6 +28,13 @@ public class ProTeam {
 
     @Enumerated(EnumType.STRING)
     private ProTeamLevel proTeamLevel;
+
+    @Builder
+    public ProTeam(Member member, Project project, ProTeamLevel proTeamLevel) {
+        this.member = member;
+        this.project = project;
+        this.proTeamLevel = proTeamLevel;
+    }
 
     public enum ProTeamLevel{
         LEADER,MEMBER

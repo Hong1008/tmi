@@ -1,13 +1,8 @@
 package com.hong.tmi.project;
 
-import com.hong.tmi.domain.Member;
-import com.hong.tmi.domain.Project;
-import com.hong.tmi.domain.Schedule;
-import com.hong.tmi.domain.Todo;
-import com.hong.tmi.domain.common.TaskManagement;
+import com.hong.tmi.domain.*;
+import com.hong.tmi.domain.embed.TaskManagement;
 import com.hong.tmi.project.dto.ProIndexDto;
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +53,11 @@ class ProjectServiceTest {
         em.persist(project1);
         em.persist(project2);
         em.persist(project3);
+
+        ProTeam proTeam1 = ProTeam.builder().member(member).project(project1).build();
+        ProTeam proTeam2 = ProTeam.builder().member(member).project(project2).build();
+        em.persist(proTeam1);
+        em.persist(proTeam2);
 
         Schedule schedule1 = Schedule.builder().taskManagement(start).project(project1).build();
         Schedule schedule2 = Schedule.builder().taskManagement(start).project(project1).build();

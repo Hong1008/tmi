@@ -1,4 +1,4 @@
-package com.hong.tmi.domain.common;
+package com.hong.tmi.domain.embed;
 
 import com.hong.tmi.domain.Member;
 import lombok.*;

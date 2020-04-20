@@ -2,7 +2,7 @@ package com.hong.tmi.domain.dto;
 
 import com.hong.tmi.domain.Member;
 import com.hong.tmi.domain.Project;
-import com.hong.tmi.domain.common.TaskManagement;
+import com.hong.tmi.domain.embed.TaskManagement;
 import lombok.Data;
 
 import java.time.LocalDateTime;

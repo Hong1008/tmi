@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 public class ProIndexDto {
+    private Long proId;
     private String leaderName;
     private int progressRate;
     private LocalDate endDate;

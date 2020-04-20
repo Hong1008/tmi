@@ -1,6 +1,7 @@
 package com.hong.tmi.domain;
 
 import com.hong.tmi.domain.Member.MemberRole;
+import com.hong.tmi.domain.repository.MemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +36,15 @@ class MemberRepositoryTest {
     @Test
     public void note() throws Exception {
         List<Project> arr = new ArrayList<>();
-        Project project = new Project();
-        Project project2 = new Project();
+        Project project = Project.builder().build();
+        Project project2 = Project.builder().build();
         arr.add(project);
         arr.add(project2);
-        List<Project> result = arr.stream().filter(
-                s -> s.equals(project) && s.getTaskManagement() == null).collect(Collectors.toList());
 
-        for (Project project1 : result) {
-            System.out.println("project1.toString() = " + project1.toString());
+        List<Project> collect = arr.stream().sorted().collect(Collectors.toList());
+
+        for (Project project1 : collect) {
+            System.out.println("project1.getId() = " + project1.getId());
         }
     }
 }

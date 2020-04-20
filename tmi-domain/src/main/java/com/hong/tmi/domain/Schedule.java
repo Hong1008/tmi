@@ -1,6 +1,6 @@
 package com.hong.tmi.domain;
 
-import com.hong.tmi.domain.common.TaskManagement;
+import com.hong.tmi.domain.embed.TaskManagement;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,6 +10,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 스케줄 엔티티
+ */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity

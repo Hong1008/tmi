@@ -1,14 +1,14 @@
 package com.hong.tmi.domain;
 
-import com.hong.tmi.domain.common.TaskManagement;
+import com.hong.tmi.domain.embed.Schedules;
+import com.hong.tmi.domain.embed.TaskManagement;
+import com.hong.tmi.domain.embed.Todos;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 프로젝트 엔티티
@@ -28,11 +28,11 @@ public class Project {
     @Embedded
     private TaskManagement taskManagement;
 
-    @OneToMany(mappedBy = "project")
-    private List<Schedule> schedules = new ArrayList<>();
+    @Embedded
+    private Schedules schedules;
 
-    @OneToMany(mappedBy = "project")
-    private List<Todo> todos = new ArrayList<>();
+    @Embedded
+    private Todos todos;
 
     @Builder
     public Project(Long id, TaskManagement taskManagement) {
