@@ -1,10 +1,12 @@
 package com.hong.tmi.domain.embed;
 
-import com.hong.tmi.domain.Member;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.function.Function;
 
@@ -16,37 +18,31 @@ import java.util.function.Function;
 @Embeddable
 public class TaskManagement {
     private String name;
-    private String info;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private String description;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private LocalDateTime realEndDate;
 
     @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "leader_id")
-    private Member member;
-
     @Builder
-    public TaskManagement(String name, String info,
-                          LocalDateTime startDate, LocalDateTime endDate, LocalDateTime realEndDate,
-                          Member member) {
+    public TaskManagement(String name, String description,
+                          LocalDate startDate, LocalDate endDate, LocalDateTime realEndDate) {
         this.name = name;
-        this.info = info;
+        this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
         this.realEndDate = realEndDate;
         this.taskStatus = calculateStatus();
-        this.member = member;
     }
 
     public TaskStatus calculateStatus() {
         if (realEndDate == null) {
-            if(startDate.isAfter(LocalDateTime.now())){
+            if(startDate.isAfter(LocalDate.now())){
                 return TaskStatus.READY;
             }
-            return endDate.isAfter(LocalDateTime.now()) ? TaskStatus.START : TaskStatus.TIMEOUT;
+            return endDate.isAfter(LocalDate.now()) ? TaskStatus.START : TaskStatus.TIMEOUT;
         } else {
             return TaskStatus.END;
         }

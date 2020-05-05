@@ -1,5 +1,6 @@
 package com.hong.tmi.domain;
 
+import com.hong.tmi.domain.common.BaseEntity;
 import com.hong.tmi.domain.embed.Schedules;
 import com.hong.tmi.domain.embed.TaskManagement;
 import com.hong.tmi.domain.embed.Todos;
@@ -16,17 +17,19 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Project {
+public class Project extends BaseEntity {
     @Id @GeneratedValue
-    @Column(name = "pro_id")
+    @Column(name = "project_id")
     private Long id;
 
     @AttributeOverrides({
-            @AttributeOverride(name = "name", column = @Column(name="pro_name")),
-            @AttributeOverride(name = "info", column = @Column(name="pro_info"))
+            @AttributeOverride(name = "name", column = @Column(name="project_name")),
+            @AttributeOverride(name = "description", column = @Column(name="project_dscr"))
     })
     @Embedded
     private TaskManagement taskManagement;
+
+    private double projectRate;
 
     @Embedded
     private Schedules schedules;

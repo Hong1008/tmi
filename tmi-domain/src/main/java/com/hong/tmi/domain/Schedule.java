@@ -1,5 +1,6 @@
 package com.hong.tmi.domain;
 
+import com.hong.tmi.domain.common.BaseEntity;
 import com.hong.tmi.domain.embed.TaskManagement;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -16,20 +17,20 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Schedule {
+public class Schedule extends BaseEntity {
     @Id @GeneratedValue
-    @Column(name = "sch_id")
+    @Column(name = "schedule_id")
     private Long id;
 
     @AttributeOverrides({
-            @AttributeOverride(name = "name", column = @Column(name="sch_name")),
-            @AttributeOverride(name = "info", column = @Column(name="sch_info"))
+            @AttributeOverride(name = "name", column = @Column(name="schedule_name")),
+            @AttributeOverride(name = "description", column = @Column(name="schedule_dscr"))
     })
     @Embedded
     private TaskManagement taskManagement;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pro_id")
+    @JoinColumn(name = "project_id")
     private Project project;
 
     @OneToMany(mappedBy = "schedule")

@@ -1,9 +1,15 @@
 package com.hong.tmi.domain;
 
 import com.hong.tmi.domain.common.BaseTimeEntity;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * 사용자 엔티티
@@ -24,17 +30,12 @@ public class Member extends BaseTimeEntity {
 
     private String picture;
 
-    @Enumerated(EnumType.STRING)
-//    @Column(nullable = false)
-    private MemberRole memberRole;
-
     @Builder
-    public Member(Long id, String memberName, String email, String picture, MemberRole memberRole) {
+    public Member(Long id, String memberName, String email, String picture) {
         this.id = id;
         this.memberName = memberName;
         this.picture = picture;
         this.email = email;
-        this.memberRole = memberRole;
     }
 
     public Member update(String name, String picture){
@@ -44,13 +45,4 @@ public class Member extends BaseTimeEntity {
         return this;
     }
 
-    @Getter
-    @RequiredArgsConstructor
-    public enum MemberRole{
-        GUEST("ROLE_GUEST","게스트"),
-        USER("ROLE_USER", "사용자");
-
-        private final String key;
-        private final String title;
-    }
 }

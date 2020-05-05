@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ProjectRepositoryQuery {
 
-    public List<Project> findBelongedProjects(Long memberId);
+    List<Project> findBelongedProjects(Long memberId);
 }
